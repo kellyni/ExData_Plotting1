@@ -1,0 +1,8 @@
+eleData<-read.csv("household_power_consumption.txt", sep=";", colClasses = "character", header=T)
+eleData1<-subset(eleData, eleData$Date== "1/2/2007")
+eleData2<-subset(eleData, eleData$Date== "2/2/2007")
+totalData<-rbind(eleData1, eleData2)
+png(file="plot2.png", width = 480, height = 480)
+plot(as.numeric(as.character(totalData$Global_active_power)), type="l", ylab="Global Active Power(kilowatts)", xaxt="n", xlab="")
+axis(1, at=c(1,1440,2880), labels=c("Thu", "Fri", "Sat"))
+dev.off()
